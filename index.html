@@ -288,7 +288,7 @@
                 <div class="wd-item">
                     <img src="img/lentera.svg" alt="">
                     <div class="w-title">
-                        <span id="tanggal"></span>
+                        <span id="tanggal">Senin, 03/03/2025</span>
                         <h3>Jadwal Solat</h3>
                         <p>List jadwal solat untuk hari ini</p>
                     </div>
@@ -301,45 +301,45 @@
                             <img src="img/matahari.svg" alt="">
                         </div>
                         <h4>Zuhur</h4>
-                        <p id="dzuhur"></p>
+                        <p id="dzuhur">00:00</p>
                     </div>
                     <div class="wd-detail">
                         <div class="wd-img">
                             <img src="img/pagi.svg" alt="">
                         </div>
                         <h4>Asar</h4>
-                        <p id="ashar"></p>
+                        <p id="ashar">00:00</p>
                     </div>
                     <div class="wd-detail">
                         <div class="wd-img">
                             <img src="img/malam.svg" alt="">
                         </div>
                         <h4>Magrib</h4>
-                        <p id="maghrib"></p>
+                        <p id="maghrib">00:00</p>
                     </div>
                     <div class="wd-detail">
                         <div class="wd-img">
                             <img src="img/malam.svg" alt="">
                         </div>
                         <h4>Isya</h4>
-                        <p id="isya"></p>
+                        <p id="isya">00:00</p>
                     </div>
                     <div class="wd-detail">
                         <div class="wd-img">
                             <img src="img/pagi.svg" alt="">
                         </div>
                         <h4>Subuh</h4>
-                        <p id="subuh"></p>
+                        <p id="subuh">00:00</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="waktu-sekarang" style="margin-top: 20px;">
-            <span>Hitung Mundur Waktu Iftar</span>
-            <h3 id="current-time" ></h3>
+            <span id="judul-waktu">Hitung Mundur Waktu Iftar</span>
+            <h3 id="current-time"></h3>
+            <p id="pesan-error" style="color: rgb(255, 217, 217); display: none;">Waktu Iftar Sudah Lewat</p>
         </div>
-
     </div>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
 
@@ -474,31 +474,29 @@
             try {
                 const response = await axios.get(endpoint);
     
-                // Jika waktu iftar belum lewat
-                document.querySelector('.waktu-sekarang span').textContent = "Hitung Mundur Waktu Iftar";
-                document.querySelector('#current-time').textContent = response.data.hitung_mundur;
+                // Jika status 200 (sukses)
+                document.getElementById('judul-waktu').textContent = "Hitung Mundur Waktu Iftar";
+                document.getElementById('current-time').textContent = response.data.hitung_mundur;
+                document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
             } catch (error) {
                 // Tangani error
                 if (error.response && error.response.status === 400) {
                     // Jika error 400 (Bad Request)
                     if (error.response.data.error === "Waktu iftar sudah lewat.") {
                         // Jika waktu iftar sudah lewat
-                        document.querySelector('.waktu-sekarang span').textContent = "Waktu Sekarang";
-                        document.querySelector('#current-time').innerHTML = `
-                            <span style="color: red;">Waktu iftar sudah lewat</span><br>
-                            Waktu sekarang: ${formatWaktu(new Date())}
-                        `;
-                    } else if (error.response.data.error === "Jadwal salat tidak ditemukan.") {
-                        // Jika jadwal salat tidak ditemukan
-                        document.querySelector('#current-time').textContent = "Tidak ada jadwal salat untuk tanggal ini.";
+                        document.getElementById('judul-waktu').textContent = "Waktu Sekarang";
+                        document.getElementById('current-time').textContent = formatWaktu(new Date());
+                        document.getElementById('pesan-error').style.display = 'block'; // Tampilkan pesan error
                     } else {
                         // Jika error lainnya (misalnya, parameter tanggal tidak valid)
-                        document.querySelector('#current-time').textContent = error.response.data.error;
+                        document.getElementById('current-time').textContent = error.response.data.error;
+                        document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
                     }
                 } else {
                     // Jika error lainnya (misalnya, jaringan bermasalah)
                     console.error("Gagal mengambil data hitung mundur iftar:", error);
-                    document.querySelector('#current-time').textContent = "Terjadi kesalahan saat mengambil data.";
+                    document.getElementById('current-time').textContent = "Terjadi kesalahan saat mengambil data.";
+                    document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
                 }
             }
         }
