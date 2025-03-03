@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ramadhan Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Onest", sans-serif;
+        }
+
+        .app-container {
+            background-color: #E4ECFF;
+            padding: 20px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        .heard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .heard h3 {
+            font-weight: 700;
+        }
+
+        .heard a {
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .heard a img {
+            width: 20px;
+        }
+
+        .banner {
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            /* line-height: 14px; */
+            border-radius: 12px;
+            background-image: linear-gradient(-30deg, #1E8CDB, #022a80);
+        }
+
+        .banner .b-title span {
+            font-size: 12px;
+            color: #77a2ff;
+        }
+
+        .banner .b-title h4 {
+            font-size: 16px;
+            margin-bottom: -5px;
+            margin-top: -1px;
+        }
+
+        .banner .b-title p {
+            font-size: 12px;
+        }
+
+        .banner .b-title a {
+            text-decoration: none;
+            background-color: #3C76F3;
+            font-size: 12px;
+            color: white;
+            padding: 8px 12px;
+            margin: 20px 0;
+            border-radius: 50px;
+        }
+
+        .banner img {
+            width: 130px;
+        }
+
+        .misi {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            padding: 12px;
+            flex-wrap: wrap;
+        }
+
+        .misi .misi-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            line-height: 8px;
+        }
+
+        .misi .misi-item p {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .misi .misi-item .m-img {
+            background-color: #3C76F3;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .misi .misi-item img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .waktu-sekarang {
+            background-color: #3C76F3;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 16px;
+            line-height: 8px;
+        }
+
+        .waktu-sekarang span {
+            background-color: #000000;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .waktu-sekarang h3 {
+            font-size: 30px;
+        }
+
+        .waktu {
+            background-image: linear-gradient(25deg, #3C76F3, #2255c3);
+            margin-top: 20px;
+            padding: 12px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .waktu .waktu-detail {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .waktu .waktu-detail .wd-item {
+            display: flex;
+            width: 100%;
+            color: white;
+        }
+
+        .waktu .waktu-detail .wd-item img {
+            margin-top: -50px;
+            z-index: 1;
+        }
+
+        .waktu .waktu-detail .wd-item .w-title {
+            text-align: center;
+            padding: 12px;
+            width: 60%;
+        }
+
+        .waktu .waktu-detail .wd-item .w-title span {
+            background-color: #000000;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+
+        .waktu .waktu-detail .wd-item .w-title p {
+            margin-top: -18px;
+            font-size: 12px;
+        }
+
+        .wd-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .wd-list .wd-detail {
+            border: 1px solid white;
+            padding: 6px;
+            text-align: center;
+            line-height: 6px;
+            border-radius: 12px;
+        }
+
+        .wd-detail.active {
+            background-color: #58b9ff; /* Warna saat aktif */
+        }
+        .wd-list .wd-detail h4 {
+            color: white;
+        }
+
+        .wd-list .wd-detail .wd-img img {
+            width: 20px;
+            height: 20px;
+            padding-top: 5px;
+        }
+
+        .waktu .waktu-detail .wd-item img:nth-child(3) {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="heard">
+            <a href="">
+                <img src="img/menu.svg" alt="">
+            </a>
+            <h3>Ramadhan Champion</h3>
+            <a href="">
+                <img src="img/notif.svg" alt="">
+            </a>
+        </div>
+
+        <div class="banner">
+            <div class="b-title">
+                <span>👋Hei..Elqusairi</span>
+                <h4>Assalamu'alikum!</h4>
+                <p>Waktu solat sekarang <span>Isya 07:00</span> berikutnya <span> Imsak 40:30</span></p>
+                <a href="">Detail Misi</a>
+            </div>
+            <img src="img/masjid.svg" alt="">
+        </div>
+
+        <div class="misi">
+            <div class="misi-item">
+                <div class="m-img">
+                    <img src="img/menu.svg" alt="">
+                </div>
+                <p>Jadwal</p>
+            </div>
+            <div class="misi-item">
+                <div class="m-img">
+                    <img src="img/azan.svg" alt="">
+                </div>
+                <p>Adzan</p>
+            </div>
+            <div class="misi-item">
+                <div class="m-img">
+                    <img src="img/misi.svg" alt="">
+                </div>
+                <p>Misi</p>
+            </div>
+            <div class="misi-item">
+                <div class="m-img">
+                    <img src="img/kebaikan.svg" alt="">
+                </div>
+                <p>Kebaikan</p>
+            </div>
+        </div>
+
+        <div class="progres" style="margin: 0 0px 16px 0px; display: flex; flex-direction: column; width: 100%;">
+            <span id="progress-text" style="color: #3C76F3;">
+                Progres Misi 30 Hari: <span id="progress-percentage">30%</span>
+            </span>
+            <progress id="progress-bar" value="30" max="100" style="width: 100%; height: 30px;"></progress>
+        </div>
+
+
+        <div class="waktu">
+            <div class="waktu-detail">
+                <div class="wd-item">
+                    <img src="img/lentera.svg" alt="">
+                    <div class="w-title">
+                        <span id="tanggal"></span>
+                        <h3>Jadwal Solat</h3>
+                        <p>List jadwal solat untuk hari ini</p>
+                    </div>
+                    <img src="img/lentera.svg" alt="">
+                </div>
+                
+                <div class="wd-list">
+                    <div class="wd-detail">
+                        <div class="wd-img">
+                            <img src="img/matahari.svg" alt="">
+                        </div>
+                        <h4>Zuhur</h4>
+                        <p id="dzuhur"></p>
+                    </div>
+                    <div class="wd-detail">
+                        <div class="wd-img">
+                            <img src="img/pagi.svg" alt="">
+                        </div>
+                        <h4>Asar</h4>
+                        <p id="ashar"></p>
+                    </div>
+                    <div class="wd-detail">
+                        <div class="wd-img">
+                            <img src="img/malam.svg" alt="">
+                        </div>
+                        <h4>Magrib</h4>
+                        <p id="maghrib"></p>
+                    </div>
+                    <div class="wd-detail">
+                        <div class="wd-img">
+                            <img src="img/malam.svg" alt="">
+                        </div>
+                        <h4>Isya</h4>
+                        <p id="isya"></p>
+                    </div>
+                    <div class="wd-detail">
+                        <div class="wd-img">
+                            <img src="img/pagi.svg" alt="">
+                        </div>
+                        <h4>Subuh</h4>
+                        <p id="subuh"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="waktu-sekarang" style="margin-top: 20px;">
+            <span>Hitung Mundur Waktu Iftar</span>
+            <h3 id="current-time" ></h3>
+        </div>
+
+    </div>
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+    <script>
+        function displayCurrentTime() {
+            const currentTime = new Date().toLocaleTimeString();
+            document.getElementById('current-time').innerText = currentTime;
+            setTimeout(displayCurrentTime, 1000);
+        }
+        displayCurrentTime();
+
+        let progress = 30;
+
+        function updateProgress() {
+            progress += 1; // Contoh logika untuk meningkatkan progres
+            if (progress > 100) progress = 100; // Pastikan progres tidak lebih dari 100
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const progressPercentage = document.getElementById('progress-percentage');
+
+            progressBar.value = progress; // Update nilai progres pada progress bar
+            progressText.innerText = 'Progres Misi 30 Hari: ' + progress + '%'; // Update teks progres
+            progressPercentage.innerText = progress + '%'; // Update nilai persentase
+        }
+    </script>
+    <!-- api -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Fungsi untuk mengambil data waktu sholat sekarang
+        async function getWaktuSholatSekarang() {
+            const endpoint = 'http://127.0.0.1:8000/waktu-sholat-sekarang/';
+    
+            try {
+                const response = await axios.get(endpoint);
+                const data = response.data;
+    
+                // Tampilkan data di elemen HTML
+                document.querySelector('.b-title p').innerHTML = `
+                    Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
+                `;
+            } catch (error) {
+                console.error("Gagal mengambil data waktu sholat:", error);
+            }
+        }
+    
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', getWaktuSholatSekarang);
+    </script>
+    <script>
+        // Fungsi untuk memformat tanggal
+        function formatTanggal(tanggal) {
+            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const date = new Date(tanggal);
+            const namaHari = hari[date.getDay()];
+            const tanggalBulan = date.getDate();
+            const namaBulan = bulan[date.getMonth()];
+            const tahun = date.getFullYear();
+    
+            return `${namaHari}, ${tanggalBulan} ${namaBulan} ${tahun}`;
+        }
+    
+        // Fungsi untuk membandingkan waktu
+        function isWaktuSekarang(waktuSolat) {
+            const sekarang = new Date();
+            const jamMenitSekarang = sekarang.getHours() * 60 + sekarang.getMinutes(); // Konversi ke menit
+            
+            const [jam, menit] = waktuSolat.split(':');
+            const jamMenitSolat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
+    
+            return jamMenitSekarang === jamMenitSolat;
+        }
+    
+        // Fungsi untuk mengambil data jadwal salat
+        async function getJadwalSalat() {
+            const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            const endpoint = `http://127.0.0.1:8000/jadwal-salat/?tanggal=${tanggalSekarang}`;
+    
+            try {
+                const response = await axios.get(endpoint);
+                const jadwal = response.data[0]; // Ambil data pertama dari array
+    
+                // Tampilkan tanggal
+                document.getElementById('tanggal').textContent = formatTanggal(jadwal.tanggal);
+    
+                // Tampilkan waktu salat
+                document.getElementById('dzuhur').textContent = jadwal.dzuhur.slice(0, 5); // Format: HH:MM
+                document.getElementById('ashar').textContent = jadwal.ashar.slice(0, 5);
+                document.getElementById('maghrib').textContent = jadwal.maghrib.slice(0, 5);
+                document.getElementById('isya').textContent = jadwal.isya.slice(0, 5);
+                document.getElementById('subuh').textContent = jadwal.subuh.slice(0, 5);
+    
+                // Cek waktu solat yang aktif
+                const waktuSolat = {
+                    dzuhur: jadwal.dzuhur.slice(0, 5),
+                    ashar: jadwal.ashar.slice(0, 5),
+                    maghrib: jadwal.maghrib.slice(0, 5),
+                    isya: jadwal.isya.slice(0, 5),
+                    subuh: jadwal.subuh.slice(0, 5),
+                };
+    
+                // Loop melalui setiap waktu solat dan tambahkan class 'active' jika sesuai
+                for (const [key, value] of Object.entries(waktuSolat)) {
+                    if (isWaktuSekarang(value)) {
+                        document.getElementById(key).parentElement.classList.add('active');
+                    }
+                }
+            } catch (error) {
+                console.error("Gagal mengambil data jadwal salat:", error);
+            }
+        }
+    
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', getJadwalSalat);
+    </script>
+    <!-- hitung mundur -->
+    <script>
+        // Fungsi untuk memformat waktu
+        function formatWaktu(date) {
+            const jam = String(date.getHours()).padStart(2, '0');
+            const menit = String(date.getMinutes()).padStart(2, '0');
+            const detik = String(date.getSeconds()).padStart(2, '0');
+            return `${jam}:${menit}:${detik}`;
+        }
+    
+        // Fungsi untuk mengambil data hitung mundur iftar
+        async function getHitungMundurIftar() {
+            const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            const endpoint = `http://127.0.0.1:8000/hitung-mundur/?tanggal=${tanggalSekarang}`;
+    
+            try {
+                const response = await axios.get(endpoint);
+    
+                // Jika waktu iftar belum lewat
+                document.querySelector('.waktu-sekarang span').textContent = "Hitung Mundur Waktu Iftar";
+                document.querySelector('#current-time').textContent = response.data.hitung_mundur;
+            } catch (error) {
+                // Tangani error
+                if (error.response && error.response.status === 400) {
+                    // Jika error 400 (Bad Request)
+                    if (error.response.data.error === "Waktu iftar sudah lewat.") {
+                        // Jika waktu iftar sudah lewat
+                        document.querySelector('.waktu-sekarang span').textContent = "Waktu Sekarang";
+                        document.querySelector('#current-time').innerHTML = `
+                            <span style="color: red;">Waktu iftar sudah lewat</span><br>
+                            Waktu sekarang: ${formatWaktu(new Date())}
+                        `;
+                    } else if (error.response.data.error === "Jadwal salat tidak ditemukan.") {
+                        // Jika jadwal salat tidak ditemukan
+                        document.querySelector('#current-time').textContent = "Tidak ada jadwal salat untuk tanggal ini.";
+                    } else {
+                        // Jika error lainnya (misalnya, parameter tanggal tidak valid)
+                        document.querySelector('#current-time').textContent = error.response.data.error;
+                    }
+                } else {
+                    // Jika error lainnya (misalnya, jaringan bermasalah)
+                    console.error("Gagal mengambil data hitung mundur iftar:", error);
+                    document.querySelector('#current-time').textContent = "Terjadi kesalahan saat mengambil data.";
+                }
+            }
+        }
+    
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', getHitungMundurIftar);
+    </script>
+</body>
+
+</html>
