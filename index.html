@@ -460,7 +460,7 @@
             // Fungsi untuk mengambil data jadwal sholat
             async function getJadwalSholat() {
                 const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-                const endpoint = `http://127.0.0.1:8000/jadwal-salat/?tanggal=${tanggalSekarang}`;
+                const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
 
             try {
                 const response = await axios.get(endpoint);
