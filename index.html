@@ -390,11 +390,11 @@
 
                     // Fungsi untuk mengambil data suara azan
                     async function getAdzanSound() {
-                        const endpoint = 'http://127.0.0.1:8000/adzan-sound/';
+                        const endpoint = 'https://ramadhan-be-production.up.railway.app/adzan-sound/';
 
                         try {
                             const response = await axios.get(endpoint);
-                            let baseUrl = 'http://127.0.0.1:8000';
+                            let baseUrl = 'https://ramadhan-be-production.up.railway.app';
                             let data_azan = baseUrl + response.data[0].file;
                             console.log(data_azan);
 
@@ -414,7 +414,7 @@
                     // Fungsi untuk mengambil data jadwal salat dan memeriksa waktu sholat
         async function getJadwalSalat() {
             const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `http://127.0.0.1:8000/jadwal-salat/?tanggal=${tanggalSekarang}`;
+            const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
 
             try {
                 const response = await axios.get(endpoint);
