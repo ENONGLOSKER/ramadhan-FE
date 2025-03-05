@@ -362,100 +362,100 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- jadwal solatAAAAAAAAAAA -->
-    <script>
-        // Fungsi untuk memformat tanggal
-        function formatTanggal(tanggal) {
-            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+<script>
+    // Fungsi untuk memformat tanggal
+    function formatTanggal(tanggal) {
+        const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-            const date = new Date(tanggal);
-            const namaHari = hari[date.getDay()];
-            const tanggalBulan = date.getDate();
-            const namaBulan = bulan[date.getMonth()];
-            const tahun = date.getFullYear();
+        const date = new Date(tanggal);
+        const namaHari = hari[date.getDay()];
+        const tanggalBulan = date.getDate();
+        const namaBulan = bulan[date.getMonth()];
+        const tahun = date.getFullYear();
 
-            return `${namaHari}, ${tanggalBulan} ${namaBulan} ${tahun}`;
-        }
+        return `${namaHari}, ${tanggalBulan} ${namaBulan} ${tahun}`;
+    }
 
         // Fungsi untuk membandingkan waktu
         function isWaktuSekarang(waktuSolat) {
             const sekarang = new Date();
             const jamMenitSekarang = sekarang.getHours() * 60 + sekarang.getMinutes(); // Konversi ke menit
 
-            const [jam, menit] = waktuSolat.split(':');
-            const jamMenitSolat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
+        const [jam, menit] = waktuSolat.split(':');
+        const jamMenitSolat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
 
-            return jamMenitSekarang === jamMenitSolat;
+        return jamMenitSekarang === jamMenitSolat;
+    }
+
+        // Fungsi untuk mengambil data suara azan
+        async function getAdzanSound() {
+            const endpoint = 'https://ramadhan-be-production.up.railway.app/adzan-sound/';
+
+        try {
+            const response = await axios.get(endpoint);
+            let baseUrl = 'https://ramadhan-be-production.up.railway.app';
+            let data_azan = baseUrl + response.data[0].file;
+            console.log(data_azan);
+
+            return data_azan
+        } catch (error) {
+            console.error("Gagal mengambil data suara azan:", error);
+            return null;
+        }
+    }
+
+        // Fungsi untuk memainkan suara azan
+        function playAdzanSound(file) {
+            const audio = new Audio(file);
+            audio.play().catch(error => console.error("Gagal memainkan suara azan:", error));
         }
 
-                    // Fungsi untuk mengambil data suara azan
-                    async function getAdzanSound() {
-                        const endpoint = 'https://ramadhan-be-production.up.railway.app/adzan-sound/';
-
-                        try {
-                            const response = await axios.get(endpoint);
-                            let baseUrl = 'https://ramadhan-be-production.up.railway.app';
-                            let data_azan = baseUrl + response.data[0].file;
-                            console.log(data_azan);
-
-                            return data_azan
-                        } catch (error) {
-                            console.error("Gagal mengambil data suara azan:", error);
-                            return null;
-                        }
-                    }
-
-                    // Fungsi untuk memainkan suara azan
-                    function playAdzanSound(file) {
-                        const audio = new Audio(file);
-                        audio.play().catch(error => console.error("Gagal memainkan suara azan:", error));
-                    }
-
-                    // Fungsi untuk mengambil data jadwal salat dan memeriksa waktu sholat
+        // Fungsi untuk mengambil data jadwal salat dan memeriksa waktu sholat
         async function getJadwalSalat() {
             const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
             const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
 
-            try {
-                const response = await axios.get(endpoint);
-                const jadwal = response.data[0]; // Ambil data pertama dari array
+        try {
+            const response = await axios.get(endpoint);
+            const jadwal = response.data[0]; // Ambil data pertama dari array
 
-                // Tampilkan tanggal
-                document.getElementById('tanggal').textContent = formatTanggal(jadwal.tanggal);
+            // Tampilkan tanggal
+            document.getElementById('tanggal').textContent = formatTanggal(jadwal.tanggal);
 
-                // Tampilkan waktu salat
-                document.getElementById('dzuhur').textContent = jadwal.dzuhur.slice(0, 5); // Format: HH:MM
-                document.getElementById('ashar').textContent = jadwal.ashar.slice(0, 5);
-                document.getElementById('maghrib').textContent = jadwal.maghrib.slice(0, 5);
-                document.getElementById('isya').textContent = jadwal.isya.slice(0, 5);
-                document.getElementById('subuh').textContent = jadwal.subuh.slice(0, 5);
+            // Tampilkan waktu salat
+            document.getElementById('dzuhur').textContent = jadwal.dzuhur.slice(0, 5); // Format: HH:MM
+            document.getElementById('ashar').textContent = jadwal.ashar.slice(0, 5);
+            document.getElementById('maghrib').textContent = jadwal.maghrib.slice(0, 5);
+            document.getElementById('isya').textContent = jadwal.isya.slice(0, 5);
+            document.getElementById('subuh').textContent = jadwal.subuh.slice(0, 5);
 
-                // Cek waktu solat yang aktif
-                const waktuSolat = {
-                    dzuhur: jadwal.dzuhur.slice(0, 5),
-                    ashar: jadwal.ashar.slice(0, 5),
-                    maghrib: jadwal.maghrib.slice(0, 5),
-                    isya: jadwal.isya.slice(0, 5),
-                    subuh: jadwal.subuh.slice(0, 5),
-                };
+            // Cek waktu solat yang aktif
+            const waktuSolat = {
+                dzuhur: jadwal.dzuhur.slice(0, 5),
+                ashar: jadwal.ashar.slice(0, 5),
+                maghrib: jadwal.maghrib.slice(0, 5),
+                isya: jadwal.isya.slice(0, 5),
+                subuh: jadwal.subuh.slice(0, 5),
+            };
 
-                // Loop melalui setiap waktu solat dan tambahkan class 'active' jika sesuai
-                for (const [key, value] of Object.entries(waktuSolat)) {
-                    if (isWaktuSekarang(value)) {
-                        document.getElementById(key).parentElement.classList.add('active');
+            // Loop melalui setiap waktu solat dan tambahkan class 'active' jika sesuai
+            for (const [key, value] of Object.entries(waktuSolat)) {
+                if (isWaktuSekarang(value)) {
+                    document.getElementById(key).parentElement.classList.add('active');
 
-                        // Ambil suara azan dan mainkan
-                        getAdzanSound().then(file => {
-                            if (file) {
-                                playAdzanSound(file);
-                            }
-                        });
-                    }
+                    // Ambil suara azan dan mainkan
+                    getAdzanSound().then(file => {
+                        if (file) {
+                            playAdzanSound(file);
+                        }
+                    });
                 }
-            } catch (error) {
-                console.error("Gagal mengambil data jadwal salat:", error);
             }
+        } catch (error) {
+            console.error("Gagal mengambil data jadwal salat:", error);
         }
+    }
 
         // Panggil fungsi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', getJadwalSalat);
@@ -479,8 +479,8 @@
 
             // Tampilkan data di elemen HTML
             document.querySelector('.b-title p').innerHTML = `
-                                        Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
-                                    `;
+                            Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
+                        `;
         } catch (error) {
             console.error("Gagal mengambil data waktu sholat:", error);
         }
@@ -490,97 +490,97 @@
     document.addEventListener('DOMContentLoaded', getWaktuSholatSekarang);
 </script>
 <!-- hitung  -->
-    <script>
-            // Fungsi untuk mengambil data jadwal sholat
-            async function getJadwalSholat() {
-                const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-                const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
+<script>
+    // Fungsi untuk mengambil data jadwal sholat
+    async function getJadwalSholat() {
+        const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
 
-            try {
-                const response = await axios.get(endpoint);
-                const jadwal = response.data[0]; // Ambil data pertama dari array
+    try {
+        const response = await axios.get(endpoint);
+        const jadwal = response.data[0]; // Ambil data pertama dari array
 
-                // Tentukan sholat berikutnya
-                const sholatBerikutnya = getSholatBerikutnya(jadwal);
+    // Tentukan sholat berikutnya
+    const sholatBerikutnya = getSholatBerikutnya(jadwal);
 
-                // Tampilkan sholat berikutnya dan waktunya
-                document.getElementById('sholat-berikutnya').textContent = sholatBerikutnya.nama;
-                document.getElementById('waktu-berikutnya').textContent = sholatBerikutnya.waktu;
+    // Tampilkan sholat berikutnya dan waktunya
+    document.getElementById('sholat-berikutnya').textContent = sholatBerikutnya.nama;
+    document.getElementById('waktu-berikutnya').textContent = sholatBerikutnya.waktu;
 
-                // Mulai hitung mundur
-                startCountdown(sholatBerikutnya.waktu);
-            } catch (error) {
-                    console.error("Gagal mengambil data jadwal sholat:", error);
-                }
-            }
+        // Mulai hitung mundur
+        startCountdown(sholatBerikutnya.waktu);
+    } catch (error) {
+        console.error("Gagal mengambil data jadwal sholat:", error);
+    }
+}
 
-                    // Fungsi untuk menentukan sholat berikutnya
-                    function getSholatBerikutnya(jadwal) {
-                        const sekarang = new Date();
-                        const jamMenitSekarang = sekarang.getHours() * 60 + sekarang.getMinutes(); // Konversi ke menit
+    // Fungsi untuk menentukan sholat berikutnya
+    function getSholatBerikutnya(jadwal) {
+        const sekarang = new Date();
+        const jamMenitSekarang = sekarang.getHours() * 60 + sekarang.getMinutes(); // Konversi ke menit
 
-                    const sholat = [
-                        { nama: "Imsak", waktu: jadwal.imsak },
-                        { nama: "Subuh", waktu: jadwal.subuh },
-                        { nama: "Dzuhur", waktu: jadwal.dzuhur },
-                        { nama: "Ashar", waktu: jadwal.ashar },
-                        { nama: "Maghrib", waktu: jadwal.maghrib },
-                        { nama: "Isya", waktu: jadwal.isya },
-                    ];
+    const sholat = [
+        { nama: "Imsak", waktu: jadwal.imsak },
+        { nama: "Subuh", waktu: jadwal.subuh },
+        { nama: "Dzuhur", waktu: jadwal.dzuhur },
+        { nama: "Ashar", waktu: jadwal.ashar },
+        { nama: "Maghrib", waktu: jadwal.maghrib },
+        { nama: "Isya", waktu: jadwal.isya },
+    ];
 
-                    // Cari sholat berikutnya
-                    for (const s of sholat) {
-                        const [jam, menit] = s.waktu.split(':');
-                        const jamMenitSholat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
+    // Cari sholat berikutnya
+    for (const s of sholat) {
+        const [jam, menit] = s.waktu.split(':');
+        const jamMenitSholat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
 
-                    if (jamMenitSholat > jamMenitSekarang) {
-                        return s;
-                    }
-                }
+    if (jamMenitSholat > jamMenitSekarang) {
+        return s;
+    }
+}
 
-                    // Jika tidak ada sholat berikutnya hari ini, kembalikan sholat pertama besok
-                    return sholat[0];
-                }
+    // Jika tidak ada sholat berikutnya hari ini, kembalikan sholat pertama besok
+    return sholat[0];
+}
 
-                    // Fungsi untuk memulai hitung mundur
-                    function startCountdown(waktuSholat) {
-                        const countdownElement = document.getElementById('countdown-timer');
+    // Fungsi untuk memulai hitung mundur
+    function startCountdown(waktuSholat) {
+        const countdownElement = document.getElementById('countdown-timer');
 
-                    function updateCountdown() {
-                        const sekarang = new Date();
-                        const [jamSholat, menitSholat] = waktuSholat.split(':');
-                        const waktuSholatDate = new Date(
-                            sekarang.getFullYear(),
-                            sekarang.getMonth(),
-                            sekarang.getDate(),
-                            jamSholat,
-                            menitSholat
-                        );
+    function updateCountdown() {
+        const sekarang = new Date();
+        const [jamSholat, menitSholat] = waktuSholat.split(':');
+        const waktuSholatDate = new Date(
+            sekarang.getFullYear(),
+            sekarang.getMonth(),
+            sekarang.getDate(),
+            jamSholat,
+            menitSholat
+        );
 
-                    // Jika waktu sholat sudah lewat, tambahkan 1 hari
-                    if (waktuSholatDate < sekarang) {
-                        waktuSholatDate.setDate(waktuSholatDate.getDate() + 1);
-                    }
+    // Jika waktu sholat sudah lewat, tambahkan 1 hari
+    if (waktuSholatDate < sekarang) {
+        waktuSholatDate.setDate(waktuSholatDate.getDate() + 1);
+    }
 
-                const selisih = waktuSholatDate - sekarang;
+    const selisih = waktuSholatDate - sekarang;
 
-                // Hitung jam, menit, dan detik
-                const jam = Math.floor(selisih / (1000 * 60 * 60));
-                const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-                const detik = Math.floor((selisih % (1000 * 60)) / 1000);
+    // Hitung jam, menit, dan detik
+    const jam = Math.floor(selisih / (1000 * 60 * 60));
+    const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+    const detik = Math.floor((selisih % (1000 * 60)) / 1000);
 
-                // Tampilkan hitung mundur
-                countdownElement.textContent = `${jam.toString().padStart(2, '0')}:${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
-            }
+    // Tampilkan hitung mundur
+    countdownElement.textContent = `${jam.toString().padStart(2, '0')}:${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
+}
 
-            // Update hitung mundur setiap detik
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
+    // Update hitung mundur setiap detik
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
 
-        // Panggil fungsi saat halaman dimuat
-            document.addEventListener('DOMContentLoaded', getJadwalSholat);
-    </script>
+    // Panggil fungsi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', getJadwalSholat);
+</script>
 </body>
 
 </html>
