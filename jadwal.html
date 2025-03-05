@@ -139,7 +139,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 5px;
-            padding: 8px;
+            padding: 10px;
             width: 43%;
             background-color: white;
             border-radius: 12px;
@@ -178,8 +178,6 @@
             font-weight: 700;
             color: white;
         }
-
-        .waktu .w-item .w-botn {}
 
         .waktu .w-item .w-botn .wb-item {
             display: flex;
@@ -263,13 +261,15 @@
             </span>
             <progress id="progress-bar" value="30" max="100" style="width: 100%; height: 30px;"></progress>
         </div>
-        <div class="waktu">
-            <div class="w-item">
+        <p style="font-weight: 600; color: #a3a3a3;">List Jadwal Solat</p>
+        <div class="waktu" id="jadwal-container">
+            <!-- LIST JADWAL SOLAT -->
+            <!-- <div class="w-item">
                 <div class="w-top">
                     <div class="wt-img">
                         <img src="img/jadwal_p.svg" alt="">
                     </div>
-                    <p>20/03/2025</p>
+                    <p id="tanggal-jadwal">20/03/2025</p>
                 </div>
                 <div class="w-botn">
                     <div class="wb-item">
@@ -303,159 +303,17 @@
                         <span>12:00</span>
                     </div>
                 </div>
-            </div>
-            <div class="w-item">
-                <div class="w-top">
-                    <div class="wt-img">
-                        <img src="img/jadwal_p.svg" alt="">
-                    </div>
-                    <p>20/03/2025</p>
-                </div>
-                <div class="w-botn">
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Zuhur</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Asar</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Magrib</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Isya</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Imsak</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Subuh</p>
-                        <span>12:00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-item">
-                <div class="w-top">
-                    <div class="wt-img">
-                        <img src="img/jadwal_p.svg" alt="">
-                    </div>
-                    <p>20/03/2025</p>
-                </div>
-                <div class="w-botn">
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Zuhur</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Asar</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Magrib</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Isya</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Imsak</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Subuh</p>
-                        <span>12:00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-item">
-                <div class="w-top">
-                    <div class="wt-img">
-                        <img src="img/jadwal_p.svg" alt="">
-                    </div>
-                    <p>20/03/2025</p>
-                </div>
-                <div class="w-botn">
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Zuhur</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/matahari_ug.svg" alt="">
-                        <p>Asar</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Magrib</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Isya</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/bulan_ug.svg" alt="">
-                        <p>Imsak</p>
-                        <span>12:00</span>
-                    </div>
-                    <div class="wb-item">
-                        <img src="img/terbit_ug.svg" alt="">
-                        <p>Subuh</p>
-                        <span>12:00</span>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
-
-    <script>
-        function displayCurrentTime() {
-            const currentTime = new Date().toLocaleTimeString();
-            document.getElementById('current-time').innerText = currentTime;
-            setTimeout(displayCurrentTime, 1000);
-        }
-        displayCurrentTime();
-
-        let progress = 30;
-
-        function updateProgress() {
-            progress += 1; // Contoh logika untuk meningkatkan progres
-            if (progress > 100) progress = 100; // Pastikan progres tidak lebih dari 100
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            const progressPercentage = document.getElementById('progress-percentage');
-
-            progressBar.value = progress; // Update nilai progres pada progress bar
-            progressText.innerText = 'Progres Misi 30 Hari: ' + progress + '%'; // Update teks progres
-            progressPercentage.innerText = progress + '%'; // Update nilai persentase
-        }
-    </script>
+    
     <!-- api -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         // Fungsi untuk mengambil data waktu sholat sekarang
         async function getWaktuSholatSekarang() {
-            const endpoint = 'http://127.0.0.1:8000/waktu-sholat-sekarang/';
+            const endpoint = 'https://ramadhan-be-production.up.railway.app/waktu-sholat-sekarang/';
 
             try {
                 const response = await axios.get(endpoint);
@@ -463,8 +321,8 @@
 
                 // Tampilkan data di elemen HTML
                 document.querySelector('.b-title p').innerHTML = `
-                    Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
-                `;
+                                                                                    Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
+                                                                                `;
             } catch (error) {
                 console.error("Gagal mengambil data waktu sholat:", error);
             }
@@ -473,121 +331,64 @@
         // Panggil fungsi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', getWaktuSholatSekarang);
     </script>
+    <!-- jadwal -->
     <script>
-        // Fungsi untuk memformat tanggal
-        function formatTanggal(tanggal) {
-            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        axios.get('https://ramadhan-be-production.up.railway.app/jadwal-salat/')
+            .then(response => {
+                const data = response.data;
+                const container = document.getElementById("jadwal-container");
 
-            const date = new Date(tanggal);
-            const namaHari = hari[date.getDay()];
-            const tanggalBulan = date.getDate();
-            const namaBulan = bulan[date.getMonth()];
-            const tahun = date.getFullYear();
+                data.forEach(item => {
+                    const jadwalHTML = `
+                        <div class="w-item">
+                            <div class="w-top">
+                                <div class="wt-img">
+                                    <img src="img/jadwal_p.svg" alt="">
+                                </div>
+                                <p>${item.tanggal}</p>
+                            </div>
 
-            return `${namaHari}, ${tanggalBulan} ${namaBulan} ${tahun}`;
-        }
+                            <div class="w-botn" style="padding: 0 12px;">
+                                <div class="wb-item">
+                                    <img src="img/matahari_ug.svg" alt="">
+                                    <p>Zuhur</p>
+                                    <span>${item.dzuhur}</span>
+                                </div>
+                                <div class="wb-item">
+                                    <img src="img/matahari_ug.svg" alt="">
+                                    <p>Asar</p>
+                                    <span>${item.ashar}</span>
+                                </div>
+                                <div class="wb-item">
+                                    <img src="img/terbit_ug.svg" alt="">
+                                    <p>Maghrib</p>
+                                    <span>${item.maghrib}</span>
+                                </div>
+                                <div class="wb-item">
+                                    <img src="img/bulan_ug.svg" alt="">
+                                    <p>Isya</p>
+                                    <span>${item.isya}</span>
+                                </div>
+                                <div class="wb-item">
+                                    <img src="img/bulan_ug.svg" alt="">
+                                    <p>Imsak</p>
+                                    <span>${item.imsak}</span>
+                                </div>
+                                <div class="wb-item">
+                                    <img src="img/terbit_ug.svg" alt="">
+                                    <p>Subuh</p>
+                                    <span>${item.subuh}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
 
-        // Fungsi untuk membandingkan waktu
-        function isWaktuSekarang(waktuSolat) {
-            const sekarang = new Date();
-            const jamMenitSekarang = sekarang.getHours() * 60 + sekarang.getMinutes(); // Konversi ke menit
-
-            const [jam, menit] = waktuSolat.split(':');
-            const jamMenitSolat = parseInt(jam) * 60 + parseInt(menit); // Konversi ke menit
-
-            return jamMenitSekarang === jamMenitSolat;
-        }
-
-        // Fungsi untuk mengambil data jadwal salat
-        async function getJadwalSalat() {
-            const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `http://127.0.0.1:8000/jadwal-salat/?tanggal=${tanggalSekarang}`;
-
-            try {
-                const response = await axios.get(endpoint);
-                const jadwal = response.data[0]; // Ambil data pertama dari array
-
-                // Tampilkan tanggal
-                document.getElementById('tanggal').textContent = formatTanggal(jadwal.tanggal);
-
-                // Tampilkan waktu salat
-                document.getElementById('dzuhur').textContent = jadwal.dzuhur.slice(0, 5); // Format: HH:MM
-                document.getElementById('ashar').textContent = jadwal.ashar.slice(0, 5);
-                document.getElementById('maghrib').textContent = jadwal.maghrib.slice(0, 5);
-                document.getElementById('isya').textContent = jadwal.isya.slice(0, 5);
-                document.getElementById('subuh').textContent = jadwal.subuh.slice(0, 5);
-
-                // Cek waktu solat yang aktif
-                const waktuSolat = {
-                    dzuhur: jadwal.dzuhur.slice(0, 5),
-                    ashar: jadwal.ashar.slice(0, 5),
-                    maghrib: jadwal.maghrib.slice(0, 5),
-                    isya: jadwal.isya.slice(0, 5),
-                    subuh: jadwal.subuh.slice(0, 5),
-                };
-
-                // Loop melalui setiap waktu solat dan tambahkan class 'active' jika sesuai
-                for (const [key, value] of Object.entries(waktuSolat)) {
-                    if (isWaktuSekarang(value)) {
-                        document.getElementById(key).parentElement.classList.add('active');
-                    }
-                }
-            } catch (error) {
-                console.error("Gagal mengambil data jadwal salat:", error);
-            }
-        }
-
-        // Panggil fungsi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', getJadwalSalat);
-    </script>
-    <!-- hitung mundur -->
-    <script>
-        // Fungsi untuk memformat waktu
-        function formatWaktu(date) {
-            const jam = String(date.getHours()).padStart(2, '0');
-            const menit = String(date.getMinutes()).padStart(2, '0');
-            const detik = String(date.getSeconds()).padStart(2, '0');
-            return `${jam}:${menit}:${detik}`;
-        }
-
-        // Fungsi untuk mengambil data hitung mundur iftar
-        async function getHitungMundurIftar() {
-            const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `http://127.0.0.1:8000/hitung-mundur/?tanggal=${tanggalSekarang}`;
-
-            try {
-                const response = await axios.get(endpoint);
-
-                // Jika status 200 (sukses)
-                document.getElementById('judul-waktu').textContent = "Hitung Mundur Waktu Iftar";
-                document.getElementById('current-time').textContent = response.data.hitung_mundur;
-                document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
-            } catch (error) {
-                // Tangani error
-                if (error.response && error.response.status === 400) {
-                    // Jika error 400 (Bad Request)
-                    if (error.response.data.error === "Waktu iftar sudah lewat.") {
-                        // Jika waktu iftar sudah lewat
-                        document.getElementById('judul-waktu').textContent = "Waktu Sekarang";
-                        document.getElementById('current-time').textContent = formatWaktu(new Date());
-                        document.getElementById('pesan-error').style.display = 'block'; // Tampilkan pesan error
-                    } else {
-                        // Jika error lainnya (misalnya, parameter tanggal tidak valid)
-                        document.getElementById('current-time').textContent = error.response.data.error;
-                        document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
-                    }
-                } else {
-                    // Jika error lainnya (misalnya, jaringan bermasalah)
-                    console.error("Gagal mengambil data hitung mundur iftar:", error);
-                    document.getElementById('current-time').textContent = "Terjadi kesalahan saat mengambil data.";
-                    document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
-                }
-            }
-        }
-
-        // Panggil fungsi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', getHitungMundurIftar);
+                    container.innerHTML += jadwalHTML;
+                });
+            })
+            .catch(error => {
+                console.error("Terjadi kesalahan saat mengambil data:", error);
+            });
     </script>
 </body>
 

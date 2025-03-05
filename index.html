@@ -375,10 +375,12 @@
     </script>
     <!-- api -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
+            // let api_endpoint = 'https://ramadhan-be-production.up.railway.app/'
         // Fungsi untuk mengambil data waktu sholat sekarang
         async function getWaktuSholatSekarang() {
-            const endpoint = 'http://127.0.0.1:8000/waktu-sholat-sekarang/';
+            const endpoint = 'https://ramadhan-be-production.up.railway.app/waktu-sholat-sekarang/';
     
             try {
                 const response = await axios.get(endpoint);
@@ -425,7 +427,7 @@
         // Fungsi untuk mengambil data jadwal salat
         async function getJadwalSalat() {
             const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `http://127.0.0.1:8000/jadwal-salat/?tanggal=${tanggalSekarang}`;
+            const endpoint = `https://ramadhan-be-production.up.railway.app/jadwal-salat/?tanggal=${tanggalSekarang}`;
     
             try {
                 const response = await axios.get(endpoint);
@@ -477,7 +479,7 @@
         // Fungsi untuk mengambil data hitung mundur iftar
         async function getHitungMundurIftar() {
             const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `http://127.0.0.1:8000/hitung-mundur/?tanggal=${tanggalSekarang}`;
+            const endpoint = `https://ramadhan-be-production.up.railway.app/hitung-mundur/?tanggal=${tanggalSekarang}`;
     
             try {
                 const response = await axios.get(endpoint);
