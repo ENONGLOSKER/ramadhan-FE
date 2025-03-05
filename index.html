@@ -146,7 +146,7 @@
         }
 
         .waktu-sekarang h3 {
-            font-size: 30px;
+            font-size: 45px;
         }
 
         .waktu {
@@ -343,36 +343,21 @@
             </div>
         </div>
 
-        <div class="waktu-sekarang" style="margin-top: 20px;">
-            <span id="judul-waktu">Hitung Mundur Waktu Iftar</span>
-            <h3 id="current-time"></h3>
-            <p id="pesan-error" style="color: rgb(255, 217, 217); display: none;">Waktu Iftar Sudah Lewat</p>
+        <div class="waktu-sekarang" style="margin-top: 20px;" id="countdown">
+            <span id="judul-waktu">
+                Hitung Mundur Waktu Berikutnya
+            </span>
+            <div class=""
+                style="width: 100%; display: flex; justify-content: center; align-content: center; gap: 5px; color: white; margin-bottom: -28px; padding: 0;">
+                <p id="sholat-berikutnya"></p>
+                <p>pada</p>
+                <p id="waktu-berikutnya"></p>
+            </div>
+            <h3 id="countdown-timer"></h3>
         </div>
+
     </div>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
-
-    <script>
-        function displayCurrentTime() {
-            const currentTime = new Date().toLocaleTimeString();
-            document.getElementById('current-time').innerText = currentTime;
-            setTimeout(displayCurrentTime, 1000);
-        }
-        displayCurrentTime();
-
-        let progress = 30;
-
-        function updateProgress() {
-            progress += 1; // Contoh logika untuk meningkatkan progres
-            if (progress > 100) progress = 100; // Pastikan progres tidak lebih dari 100
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            const progressPercentage = document.getElementById('progress-percentage');
-
-            progressBar.value = progress; // Update nilai progres pada progress bar
-            progressText.innerText = 'Progres Misi 30 Hari: ' + progress + '%'; // Update teks progres
-            progressPercentage.innerText = progress + '%'; // Update nilai persentase
-        }
-    </script>
     <!-- api -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -385,7 +370,10 @@
             try {
                 const response = await axios.get(endpoint);
                 const data = response.data;
-    
+
+                console.log(data);
+
+                
                 // Tampilkan data di elemen HTML
                 document.querySelector('.b-title p').innerHTML = `
                     Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
@@ -468,51 +456,25 @@
     </script>
     <!-- hitung mundur -->
     <script>
-        // Fungsi untuk memformat waktu
-        function formatWaktu(date) {
-            const jam = String(date.getHours()).padStart(2, '0');
-            const menit = String(date.getMinutes()).padStart(2, '0');
-            const detik = String(date.getSeconds()).padStart(2, '0');
-            return `${jam}:${menit}:${detik}`;
-        }
-    
-        // Fungsi untuk mengambil data hitung mundur iftar
-        async function getHitungMundurIftar() {
-            const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-            const endpoint = `https://ramadhan-be-production.up.railway.app/hitung-mundur/?tanggal=${tanggalSekarang}`;
-    
+                                                                                                                                                                                                                                                                                                                                                async function updateCountdown() {
             try {
-                const response = await axios.get(endpoint);
-    
-                // Jika status 200 (sukses)
-                document.getElementById('judul-waktu').textContent = "Hitung Mundur Waktu Iftar";
-                document.getElementById('current-time').textContent = response.data.hitung_mundur;
-                document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
+                const response = await axios.get('http://127.0.0.1:8000/countdown_waktu/');
+                const data = response.data;
+
+                // Tampilkan data di elemen HTML
+                document.getElementById('sholat-berikutnya').textContent = data.sholat_berikutnya;
+                document.getElementById('waktu-berikutnya').textContent = data.waktu_berikutnya;
+                document.getElementById('countdown-timer').textContent = data.countdown;
             } catch (error) {
-                // Tangani error
-                if (error.response && error.response.status === 400) {
-                    // Jika error 400 (Bad Request)
-                    if (error.response.data.error === "Waktu iftar sudah lewat.") {
-                        // Jika waktu iftar sudah lewat
-                        document.getElementById('judul-waktu').textContent = "Waktu Sekarang";
-                        document.getElementById('current-time').textContent = formatWaktu(new Date());
-                        document.getElementById('pesan-error').style.display = 'block'; // Tampilkan pesan error
-                    } else {
-                        // Jika error lainnya (misalnya, parameter tanggal tidak valid)
-                        document.getElementById('current-time').textContent = error.response.data.error;
-                        document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
-                    }
-                } else {
-                    // Jika error lainnya (misalnya, jaringan bermasalah)
-                    console.error("Gagal mengambil data hitung mundur iftar:", error);
-                    document.getElementById('current-time').textContent = "Terjadi kesalahan saat mengambil data.";
-                    document.getElementById('pesan-error').style.display = 'none'; // Sembunyikan pesan error
-                }
+                console.error("Gagal mengambil data countdown:", error);
             }
         }
-    
+
+                                                                                                                                                                                                                                                                                                                                                // Perbarui countdown setiap detik
+                                                                                                                                                                                                                                                                                                                                                setInterval(updateCountdown, 1000);
+
         // Panggil fungsi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', getHitungMundurIftar);
+                                                                                                                                                                                                                                                                                                                                                document.addEventListener('DOMContentLoaded', updateCountdown);
     </script>
 </body>
 
