@@ -335,7 +335,7 @@
             try {
                 // Panggil API menggunakan Axios
                 const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-                const response = await axios.get('https://ramadhan-be-production.up.railway.app/?tanggal=${tanggalSekarang}');
+                const response = await axios.get('https://ramadhan-be-production.up.railway.app/misi-harian/?tanggal=${tanggalSekarang}');
                 // const response = await axios.get('http://127.0.0.1:8000/misi-harian/?tanggal=${tanggalSekarang}');
                 const data = response.data;
                 console.log(tanggalSekarang);
