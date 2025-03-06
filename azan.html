@@ -307,89 +307,10 @@
         </div>
     </div>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
-    
+
     <!-- api -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        // Fungsi untuk mengambil data waktu sholat sekarang
-        async function getWaktuSholatSekarang() {
-            const endpoint = 'https://ramadhan-be-production.up.railway.app/waktu-sholat-sekarang/';
 
-            try {
-                const response = await axios.get(endpoint);
-                const data = response.data;
-
-                // Tampilkan data di elemen HTML
-                document.querySelector('.b-title p').innerHTML = `
-                Waktu solat sekarang <span>${data.sholat_sekarang} ${data.waktu}</span> berikutnya <span>${data.sholat_berikutnya} ${data.waktu_berikutnya}</span>
-                                                                                `;
-            } catch (error) {
-                console.error("Gagal mengambil data waktu sholat:", error);
-            }
-        }
-
-        // Panggil fungsi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', getWaktuSholatSekarang);
-    </script>
-    <!-- jadwal -->
-    <script>
-        axios.get('https://ramadhan-be-production.up.railway.app/jadwal-salat/')
-            .then(response => {
-                const data = response.data;
-                const container = document.getElementById("jadwal-container");
-
-                data.forEach(item => {
-                    const jadwalHTML = `
-                        <div class="w-item">
-                            <div class="w-top">
-                                <div class="wt-img">
-                                    <img src="img/jadwal_p.svg" alt="">
-                                </div>
-                                <p>${item.tanggal}</p>
-                            </div>
-
-                            <div class="w-botn" style="padding: 0 12px;">
-                                <div class="wb-item">
-                                    <img src="img/matahari_ug.svg" alt="">
-                                    <p>Zuhur</p>
-                                    <span>${item.dzuhur}</span>
-                                </div>
-                                <div class="wb-item">
-                                    <img src="img/matahari_ug.svg" alt="">
-                                    <p>Asar</p>
-                                    <span>${item.ashar}</span>
-                                </div>
-                                <div class="wb-item">
-                                    <img src="img/terbit_ug.svg" alt="">
-                                    <p>Maghrib</p>
-                                    <span>${item.maghrib}</span>
-                                </div>
-                                <div class="wb-item">
-                                    <img src="img/bulan_ug.svg" alt="">
-                                    <p>Isya</p>
-                                    <span>${item.isya}</span>
-                                </div>
-                                <div class="wb-item">
-                                    <img src="img/bulan_ug.svg" alt="">
-                                    <p>Imsak</p>
-                                    <span>${item.imsak}</span>
-                                </div>
-                                <div class="wb-item">
-                                    <img src="img/terbit_ug.svg" alt="">
-                                    <p>Subuh</p>
-                                    <span>${item.subuh}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    container.innerHTML += jadwalHTML;
-                });
-            })
-            .catch(error => {
-                console.error("Terjadi kesalahan saat mengambil data:", error);
-            });
-    </script>
 </body>
 
 </html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
+    <title>Ramadhan Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Onest", sans-serif;
+        }
+
+        .app-container {
+            background-color: #E4ECFF;
+            padding: 12px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        .heard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .heard h3 {
+            font-weight: 700;
+        }
+
+        .heard a {
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .heard a img {
+            width: 20px;
+        }
+
+        .banner {
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            /* line-height: 14px; */
+            border-radius: 12px;
+            background-image: linear-gradient(-30deg, #1E8CDB, #022a80);
+        }
+
+        .banner .b-title span {
+            font-size: 12px;
+            color: #77a2ff;
+        }
+
+        .banner .b-title h4 {
+            font-size: 16px;
+            margin-bottom: -5px;
+            margin-top: -1px;
+        }
+
+        .banner .b-title p {
+            font-size: 12px;
+        }
+
+        .banner .b-title a {
+            text-decoration: none;
+            background-color: #3C76F3;
+            font-size: 12px;
+            color: white;
+            padding: 8px 12px;
+            margin: 20px 0;
+            border-radius: 50px;
+        }
+
+        .banner img {
+            width: 130px;
+        }
+
+        .misi {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 35px;
+            padding: 12px;
+            flex-wrap: wrap;
+        }
+
+        .misi .misi-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            line-height: 8px;
+        }
+
+        .misi .misi-item p {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .misi .misi-item .m-img {
+            background-color: #3C76F3;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .misi .misi-item img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+
+        .acr-con {
+            background-color: white;
+            border-bottom: 4px solid #3C76F3;
+            padding: 12px 12px 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .acr-con .acr-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .acr-con .acr-top .top-img {
+            background-color: #3C76F3;
+            padding: 4px;
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .acr-con .acr-top .top-img img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* bagian atas tengah */
+        .acr-con .acr-top .top-c {
+            width: 65%;
+        }
+
+        .acr-con .acr-top .top-c span {
+            margin-bottom: -12px;
+            display: block;
+            color: #2c2c2c;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .acr-con .acr-top .top-c p {
+            color: #3C76F3;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /* bagian atas akhir */
+        .acr-con .acr-top button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .acr-content {
+            max-height: 0;
+            /* Sembunyikan konten awal */
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            /* Pindahkan padding ke sini */
+        }
+
+        .acr-top button img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .acr-top button.active img {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="heard">
+            <a href="index.html">
+                <img src="img/kebali.svg" alt="">
+            </a>
+            <h3>Ramadhan Champion</h3>
+            <a href="">
+                <img src="img/notif.svg" alt="">
+            </a>
+        </div>
+
+        <div class="banner">
+            <div class="b-title">
+                <span>👋Hei..Elqusairi</span>
+                <h4>Assalamu'alikum!</h4>
+                <p>Waktu solat sekarang <span>Isya 07:00</span> berikutnya <span> Imsak 40:30</span></p>
+                <a href="">Detail Misi</a>
+            </div>
+            <img src="img/masjid.svg" alt="">
+        </div>
+
+        <div class="misi">
+            <div class="misi-item">
+                <a href="jadwal.html">
+                    <div class="m-img">
+                        <img src="img/jadwal.svg" alt="">
+                    </div>
+                </a>
+                <p>Jadwal</p>
+            </div>
+            <div class="misi-item">
+                <a href="adzan.html">
+                    <div class="m-img">
+                        <img src="img/azan.svg" alt="">
+                    </div>
+                </a>
+                <p>Adzan</p>
+            </div>
+            <div class="misi-item">
+                <a href="misi.html">
+                    <div class="m-img">
+                        <img src="img/misi.svg" alt="">
+                    </div>
+                </a>
+                <p>Misi</p>
+            </div>
+            <div class="misi-item">
+                <a href="kebaikan.html">
+                    <div class="m-img">
+                        <img src="img/kebaikan.svg" alt="">
+                    </div>
+                </a>
+                <p>Kebaikan</p>
+            </div>
+        </div>
+
+        <div class="progres" style="margin: 0 0px 16px 0px; display: flex; flex-direction: column; width: 100%;">
+            <span id="progress-text" style="color: #3C76F3;">
+                Progres Misi 30 Hari: <span id="progress-percentage">30%</span>
+            </span>
+            <progress id="progress-bar" value="30" max="100" style="width: 100%; height: 30px;"></progress>
+        </div>
+        <p style="font-weight: 600; color: #a3a3a3;">List Jadwal Solat</p>
+
+        <div class="container" id="accordion-container">
+            <div class="acr-con">
+                <!-- Header accordion -->
+                <div class="acr-top">
+                    <div class="top-img">
+                        <img src="img/target.svg" alt="">
+                    </div>
+                    <div class="top-c">
+                        <span>Tanggal</span>
+                        <p class="accordion">01/03/2025</p>
+                    </div>
+                    <button>
+                        <img src="img/panah_bawah.svg" alt="panah">
+                    </button>
+                </div>
+
+                <!-- Konten yang akan disembunyikan -->
+                <div class="acr-content">
+                    <hr>
+                    <p style="padding-left: 12px; font-weight: 600;">Deskripsi Misi:</p>
+                    <p style="padding-left: 12px;">Whether you need a wordpress website...</p>
+                    <div class="acr-btn"
+                        style="display: flex; align-items: end; justify-content: end; margin-bottom: 12px;">
+                        <button
+                            style="display: flex; align-items: center; justify-content: space-around; gap: 4px; background-color: #3C76F3; width: fit-content; height: fit-content; padding: 0 18px; border: none; border-radius: 50px; font-weight: 600; color: white; cursor: pointer; ">
+                            <img src="img/cek.svg" alt="cek" style="width: 20px;">
+                            <p>Selesai</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+    <!-- api -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.querySelectorAll('.acr-top button').forEach(button => {
+            button.addEventListener('click', () => {
+                const container = button.closest('.acr-con');
+                const content = container.querySelector('.acr-content');
+
+                // Toggle class active untuk animasi panah
+                button.classList.toggle('active');
+
+                // Toggle konten
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+    <!-- api  -->
+    <script>
+        // Ambil elemen container untuk menampilkan data
+        const accordionContainer = document.getElementById('accordion-container');
+
+        // Fungsi untuk mengambil data dari API
+        async function fetchData() {
+            try {
+                // Panggil API menggunakan Axios
+                const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+                const response = await axios.get('https://ramadhan-be-production.up.railway.app/?tanggal=${tanggalSekarang}');
+                // const response = await axios.get('http://127.0.0.1:8000/misi-harian/?tanggal=${tanggalSekarang}');
+                const data = response.data;
+                console.log(tanggalSekarang);
+                console.log(response);
+                console.log(data);
+
+
+                // Render data ke dalam template
+                renderAccordion(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                accordionContainer.innerHTML = '<p>Gagal memuat data.</p>';
+            }
+        }
+
+        // Fungsi untuk merender data ke dalam template
+        function renderAccordion(data) {
+            // Kosongkan container terlebih dahulu
+            accordionContainer.innerHTML = '';
+
+            // Loop melalui data dan buat elemen accordion
+            data.forEach(item => {
+                const accordionHTML = `
+            <div class="acr-con">
+                <!-- Header accordion -->
+                <div class="acr-top">
+                    <div class="top-img">
+                        <img src="img/target.svg" alt="">
+                    </div>
+                    <div class="top-c">
+                        <span>Tanggal</span>
+                        <p class="accordion">${formatDate(item.tanggal)}</p>
+                    </div>
+                    <button>
+                        <img src="img/panah_bawah.svg" alt="panah">
+                    </button>
+                </div>
+
+                <!-- Konten yang akan disembunyikan -->
+                <div class="acr-content">
+                    <hr>
+                    <p style="padding-left: 12px; font-weight: 600;">Deskripsi Misi:</p>
+                    <p style="padding-left: 12px;">${item.deskripsi}</p>
+                     <div class="acr-btn"
+                        style="display: flex; align-items: end; justify-content: end; margin-bottom: 12px;">
+                        <button
+                            style="display: flex; align-items: center; justify-content: space-around; gap: 4px; background-color: #3C76F3; width: fit-content; height: fit-content; padding: 0 18px; border: none; border-radius: 50px; font-weight: 600; color: white; cursor: pointer; ">
+                            <img src="img/cek.svg" alt="cek" style="width: 20px;">
+                            <p>Selesai</p>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        `;
+
+                // Tambahkan accordion ke container
+                accordionContainer.innerHTML += accordionHTML;
+            });
+
+            // Tambahkan event listener untuk toggle accordion
+            addAccordionListeners();
+        }
+
+        // Fungsi untuk memformat tanggal
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        // Fungsi untuk menambahkan event listener pada tombol accordion
+        function addAccordionListeners() {
+            document.querySelectorAll('.acr-top button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const container = button.closest('.acr-con');
+                    const content = container.querySelector('.acr-content');
+
+                    // Toggle class active untuk animasi panah
+                    button.classList.toggle('active');
+
+                    // Toggle konten
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+
+        // Panggil fungsi fetchData saat halaman dimuat
+        fetchData();
+    </script>
+
+</body>
+
+</html>
