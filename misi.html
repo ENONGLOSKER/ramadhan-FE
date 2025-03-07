@@ -22,6 +22,7 @@
             /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
             max-width: 360px;
             margin: 0 auto;
+            height: 100vh;
         }
 
         .heard {
@@ -269,7 +270,7 @@
             <progress id="progress-bar" value="30" max="100" style="width: 100%; height: 30px;"></progress>
         </div>
         <p style="font-weight: 600; color: #a3a3a3;">List Jadwal Solat</p>
-
+        
         <div class="container" id="accordion-container">
             <div class="acr-con">
                 <!-- Header accordion -->
@@ -291,9 +292,8 @@
                     <hr>
                     <p style="padding-left: 12px; font-weight: 600;">Deskripsi Misi:</p>
                     <p style="padding-left: 12px;">Whether you need a wordpress website...</p>
-                    <div class="acr-btn"
-                        style="display: flex; align-items: end; justify-content: end; margin-bottom: 12px;">
-                        <button
+                    <div class="acr-btn" style="display: flex; align-items: end; justify-content: end; margin-bottom: 12px;">
+                        <button class="selesai-btn"
                             style="display: flex; align-items: center; justify-content: space-around; gap: 4px; background-color: #3C76F3; width: fit-content; height: fit-content; padding: 0 18px; border: none; border-radius: 50px; font-weight: 600; color: white; cursor: pointer; ">
                             <img src="img/cek.svg" alt="cek" style="width: 20px;">
                             <p>Selesai</p>
@@ -346,8 +346,9 @@
                 // Render data ke dalam template
                 renderAccordion(data);
             } catch (error) {
+                const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
                 console.error('Error fetching data:', error);
-                accordionContainer.innerHTML = '<p>Gagal memuat data.</p>';
+                accordionContainer.innerHTML = `<p style="background-color: rgb(253, 160, 160); border: 2px solid rgb(250, 60, 60); padding: 12px; text-align: center; border-radius: 8px;"> Gagal memuat data atau <br> Tidak ada Misi untuk hari ini (${tanggalSekarang})</p>`;
             }
         }
 
@@ -432,6 +433,7 @@
         // Panggil fungsi fetchData saat halaman dimuat
         fetchData();
     </script>
+    <!-- btn selesai -->
 
 </body>
 
